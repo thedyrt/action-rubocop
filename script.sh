@@ -12,7 +12,9 @@ TEMP_PATH="$(mktemp -d)"
 PATH="${TEMP_PATH}:$PATH"
 
 echo '::group::🐶 Installing reviewdog ... https://github.com/reviewdog/reviewdog'
-curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b "${TEMP_PATH}" "${REVIEWDOG_VERSION}" 2>&1
+# curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b "${TEMP_PATH}" "${REVIEWDOG_VERSION}" 2>&1
+curl -o "${TEMP_PATH}/reviewdog" https://github.com/thedyrt/action-rubocop/releases/download/untagged-65e95e10e461a011f2a6/reviewdog
+chmod +x "${TEMP_PATH}/reviewdog"
 echo '::endgroup::'
 
 if [ "${INPUT_SKIP_INSTALL}" = "false" ]; then
